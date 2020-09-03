@@ -1,4 +1,4 @@
-from rucio/rucio-server:release-1.22.8.post1
+from rucio/rucio-server:release-1.23.2.post2
 
 RUN yum clean all && \
     rm -rf /var/cache/yum
@@ -14,5 +14,6 @@ RUN git clone https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts.git
 
 COPY ./scripts/* /scripts/
 COPY ./entrypoint.sh /entrypoint.sh
+COPY ./rucio.cfg.escape.j2 /rucio.cfg.escape.j2
 
 ENTRYPOINT ["/entrypoint.sh"]

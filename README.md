@@ -1,23 +1,30 @@
-# Container containing synchronization scripts with IAM-ESCAPE and ESCAPE-CRIC
+# DataLake-Crons
+> Synchronization Scripts
 
-This containers is used in the ESCAPE Datalake to run some operation periodically. At the moment it is running the synchronization with CRIC and IAM services. The original scripts can be found here https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts
+The container is used to periodically run specific operations in the ESCAPE DataLake.
+At the moment, it runs the synchronization with CRIC and IAM services.
+The original scripts can be found at https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts .
 
-## Configuring
-The following env variables should be configured before while running the container
+## Example of build and upload
 
-    $RUCIO_CFG_DATABASE_DEFAULT
-    $IAM_RUCIO_SYNC_CLIENT_SECRET
-    $IAM_RUCIO_SYNC_SERVER
-    $IAM_RUCIO_SYNC_CLIENT_ID
+    docker build .
 
-You can also optionally set the following variable to control the frequency of the execution
+    docker tag $IMAGE_ID projectescape/escape-datalake-crons:release-1.23.2.post2
+
+Remember to do `docker login` and be member of `projectescape`.
+
+    docker push projectescape/escape-datalake-crons:release-1.23.2.post2
+
+## Run
+
+The following `ENV` variables should be configured before running the container.
+
+    export RUCIO_CFG_DATABASE_DEFAULT=$RUCIO_CFG_DATABASE_DEFAULT
+    export IAM_RUCIO_SYNC_CLIENT_SECRET=$IAM_RUCIO_SYNC_CLIENT_SECRET
+    export IAM_RUCIO_SYNC_SERVER=$IAM_RUCIO_SYNC_SERVER
+    export IAM_RUCIO_SYNC_CLIENT_ID=$IAM_RUCIO_SYNC_CLIENT_ID
+
+Optionally, set the following variables to control the frequency of the execution.
     
-    $CRIC_RUCIO_SYNC_SLEEP_TIME_MINUTES
-    $IAM_RUCIO_SYNC_SLEEP_TIME_MINUTES
-
-## Example build and upload
-    $ docker build .
-
-    $ docker tag 26150bcd1cdb frouk/escape_datalake_crons
-
-    $ docker push frouk/escape_datalake_crons
+    export CRIC_RUCIO_SYNC_SLEEP_TIME_MINUTES=$CRIC_RUCIO_SYNC_SLEEP_TIME_MINUTES
+    export IAM_RUCIO_SYNC_SLEEP_TIME_MINUTES=$IAM_RUCIO_SYNC_SLEEP_TIME_MINUTES
