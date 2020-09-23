@@ -1,4 +1,4 @@
-from rucio/rucio-server:release-1.23.2.post2
+FROM rucio/rucio-server:release-1.23.6
 
 RUN yum clean all && \
     rm -rf /var/cache/yum
