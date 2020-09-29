@@ -16,7 +16,7 @@ rses[12]="SARA-DCACHE"
 
 echo '* RUCIO Produce Noise * Exporting ENV Variables'
 
-SLEEP_TIME_MINUTES=${NOISE_SLEEP_TIME_MINUTES:-120m}
+SLEEP_TIME_MINUTES=${NOISE_SLEEP_TIME_MINUTES:-20m}
 FILE_SIZE=${FILE_SIZE:-10M}
 
 upload_and_transfer () {
