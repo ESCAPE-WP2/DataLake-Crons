@@ -9,7 +9,6 @@ SLEEP_TIME_MINUTES=${IAM_RUCIO_SYNC_SLEEP_TIME_MINUTES:-120m}
 
 echo '* Sync to IAM (Gridmap) * Exporting ENV Variables'
 
-# TODO: Check all required files are configured here.
 echo $SLEEP_TIME_MINUTES
 
 export IAM_SERVER=$IAM_RUCIO_SYNC_SERVER

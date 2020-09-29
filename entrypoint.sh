@@ -12,7 +12,4 @@ j2 /rucio.cfg.escape.j2 | sed '/^\s*$/d' > /opt/rucio/etc/rucio.cfg
 sleep 5
 /usr/sbin/httpd -k restart
 
-# tmp fix since rucio-clients==1.23.6 not working
-pip install rucio-clients==1.22.6.post1
-
 sleep infinity
