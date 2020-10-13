@@ -13,7 +13,7 @@ docker tag $IMAGE_ID projectescape/escape-datalake-crons:release-1.23.6.post1
 ```
 Remember to do `docker login` and be member of `projectescape`.
 ```bash
-    docker push projectescape/escape-datalake-crons:release-1.23.6.post1
+docker push projectescape/escape-datalake-crons:release-1.23.6.post1
 ```
 ## Run
 
