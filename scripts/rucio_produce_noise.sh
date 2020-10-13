@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python Utilities-and-Operations-Scripts/cric-info-tools/list_rses_from_cric.py -o list_rses_from_cric.txt
+python Utilities-and-Operations-Scripts/cric-info-tools/list_rses_from_cric.py -o list_rses_from_cric.txt -i Utilities-and-Operations-Scripts/cric-info-tools/disabled_rses.txt
 
 rses=()
 while read line
@@ -15,6 +15,7 @@ echo '* RUCIO Produce Noise * Exporting ENV Variables'
 SLEEP_TIME_MINUTES=${NOISE_SLEEP_TIME_MINUTES:-30m}
 FILE_SIZE=${FILE_SIZE:-10M}
 RUCIO_SCOPE=${RUCIO_SCOPE:-ESCAPE_CERN_TEAM-noise}
+FILE_LIFETIME=${FILE_LIFETIME:-3600}
 
 upload_and_transfer () {
     for (( i=0; i<$len; i++ )); do
@@ -29,9 +30,9 @@ upload_and_transfer () {
         
         if [ $1 != $i ]; then
             echo '*** upload to rse' ${rses[$1]}
-	        rucio upload --rse ${rses[$1]} --scope $RUCIO_SCOPE $filename || return '1' #continue
+	        rucio upload --rse ${rses[$1]} --lifetime $FILE_LIFETIME --scope $RUCIO_SCOPE $filename || return '1' #continue
             echo '*** add-rule to rse' ${rses[$i]}
-            rucio add-rule $RUCIO_SCOPE:$did 1 ${rses[$i]};
+            rucio add-rule --lifetime $FILE_LIFETIME $RUCIO_SCOPE:$did 1 ${rses[$i]};
 	    fi
         rm $filename
     done
