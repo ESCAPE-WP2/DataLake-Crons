@@ -15,7 +15,7 @@ echo '* Gfal SAM Testing * Initializing Loop'
 
 while true; do
     cd $LOCALPATH
-    python Utilities-and-Operations-Scripts/gfal-sam-testing/gfal_sam.py
+    python /scripts/Utilities-and-Operations-Scripts/gfal-sam-testing/gfal_sam.py
     echo '* Gfal SAM Testing * Will sleep for ' $SLEEP_TIME_MINUTES
     sleep $SLEEP_TIME_MINUTES
 done
