@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SLEEP_TIME_MINUTES=${GFAL_SAM_SLEEP_TIME_MINUTES:-30m}
+SLEEP_TIME_MINUTES=${GFAL_SAM_SLEEP_TIME_MINUTES:-2m}
 
 echo '* Gfal SAM Testing * Exporting ENV Variables (X509: ' $X509_USER_PROXY ' )'
 
