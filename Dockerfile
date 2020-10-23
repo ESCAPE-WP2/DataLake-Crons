@@ -1,9 +1,9 @@
-FROM rucio/rucio-server:release-1.23.6.post1
+FROM rucio/rucio-server:release-1.23.8
 
 RUN yum clean all && \
     rm -rf /var/cache/yum
 
-RUN yum install git -y
+RUN yum -y install git
 
 RUN pip install configparser
 RUN mkdir /scripts
@@ -11,6 +11,11 @@ RUN mkdir /scripts
 WORKDIR /scripts
 
 RUN git clone https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts.git
+
+RUN git clone https://github.com/ESCAPE-WP2/fts-analysis-datalake.git
+# gfal2-python dependencies
+RUN yum -y install cmake boost-devel gcc gcc-c++ make
+RUN pip install -r /scripts/fts-analysis-datalake/reqs.txt
 
 COPY ./scripts/* /scripts/
 COPY ./entrypoint.sh /entrypoint.sh

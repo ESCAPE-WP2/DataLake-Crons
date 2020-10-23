@@ -2,18 +2,18 @@
 > Synchronization Scripts
 
 The container is used to periodically run specific operations in the ESCAPE DataLake.
-The container runs the CRIC-Rucio, IAM-Rucio, and IAM-EOSgridmap synchronizations, as well as Rucio noise and gfal-sam-testing.
-The original scripts can be found at https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts .
+The container runs the CRIC-Rucio, IAM-Rucio, and IAM-EOSgridmap synchronizations, as well as Rucio noise, gfal-sam-testing, and FTS TPC tests.
+The original scripts can be found at https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts and https://github.com/ESCAPE-WP2/fts-analysis-datalake.git .
 
 ## Example of build and upload
 ```bash
 docker build .
 
-docker tag $IMAGE_ID projectescape/escape-datalake-crons:release-1.23.6.post1
+docker tag $IMAGE_ID projectescape/escape-datalake-crons:release-1.23.8
 ```
 Remember to do `docker login` and be member of `projectescape`.
 ```bash
-docker push projectescape/escape-datalake-crons:release-1.23.6.post1
+docker push projectescape/escape-datalake-crons:release-1.23.8
 ```
 ## Run
 
