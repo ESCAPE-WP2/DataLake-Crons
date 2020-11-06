@@ -13,7 +13,7 @@ len=${#rses[@]}
 echo '* RUCIO Produce Noise * Exporting ENV Variables'
 
 SLEEP_TIME_MINUTES=${NOISE_SLEEP_TIME_MINUTES:-30m}
-FILE_SIZE=${FILE_SIZE:-10M}
+FILE_SIZE=${FILE_SIZE:-100M}
 RUCIO_SCOPE=${RUCIO_SCOPE:-ESCAPE_CERN_TEAM-noise}
 FILE_LIFETIME=${FILE_LIFETIME:-3600}
 
@@ -26,7 +26,9 @@ upload_and_transfer () {
         
         echo '*** filename' $filename
         
-        truncate -s $FILE_SIZE $filename
+        # truncate -s $FILE_SIZE $filename ## !! 10M (10485760 byte) empty file whose adler32 should be 09600001, which is problematic for STORM due to the leading '0'
+        # dd if=/dev/urandom of=$filename bs=1048576 count=$FILE_SIZE ## output should be filtered away '> /dev/null 2>&1'
+        head -c $FILE_SIZE < /dev/urandom  > $filename
         
         if [ $1 != $i ]; then
             echo '*** upload to rse' ${rses[$1]}
