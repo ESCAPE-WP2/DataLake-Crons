@@ -12,9 +12,9 @@ export FTS_LOCALPATH="/scripts/temp_files_fts/"
 echo '* FTS Testing * Initializing Loop'
 
 fts_testing(){
-    python fts_datalake_test.py -i conf/datalake.json --cleanup --exit
-    python fts_datalake_test.py -i conf/lapp_webdav.json
-    python fts_datalake_test.py -i conf/datalake.json
+    python fts_datalake_test.py -i conf/datalake_all_1mb.json --cleanup --exit
+    python fts_datalake_test.py -i conf/datalake_all_except_lapp_webdav_1000mb.json
+    python fts_datalake_test.py -i conf/datalake_all_1mb.json
 }
 
 while true; do
