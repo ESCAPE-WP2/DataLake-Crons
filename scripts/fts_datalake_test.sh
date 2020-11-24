@@ -18,8 +18,8 @@ fts_testing(){
     export XRD_STREAMTIMEOUT=$GFAL2_TIMEOUT
     export XRD_TIMEOUTRESOLUTION=$GFAL2_TIMEOUT
     python fts_datalake_test.py -i conf/datalake_all_1mb.json --cleanup --exit
-    python fts_datalake_test.py -i conf/datalake_all_except_lapp_webdav_1000mb.json
     python fts_datalake_test.py -i conf/datalake_all_1mb.json
+    python fts_datalake_test.py -i conf/datalake_all_except_lapp_webdav_1000mb.json
 }
 
 while true; do
