@@ -35,4 +35,4 @@ RUN yum -y install cmake boost-devel gcc gcc-c++ make
 RUN pip install -r /scripts/fts-analysis-datalake/reqs.txt
 RUN /usr/bin/python2 -m pip install --upgrade pip
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash"]

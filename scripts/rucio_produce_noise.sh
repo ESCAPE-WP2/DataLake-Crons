@@ -12,7 +12,6 @@ len=${#rses[@]}
 
 echo '* RUCIO Produce Noise * Exporting ENV Variables'
 
-SLEEP_TIME_MINUTES=${NOISE_SLEEP_TIME_MINUTES:-10m}
 FILE_SIZE=${FILE_SIZE:-10000M}
 RUCIO_SCOPE=${RUCIO_SCOPE:-ESCAPE_CERN_TEAM-noise}
 FILE_LIFETIME=${FILE_LIFETIME:-3600}
@@ -40,13 +39,10 @@ upload_and_transfer () {
     done
 }
 
-echo '* RUCIO Produce Noise * Initializing Loop'
+echo '* RUCIO Produce Noise * Starting'
 
-while true; do
-    for (( j=0; j<$len; j++ )); do
-        upload_and_transfer $j
-    done
-
-    echo '* RUCIO Produce Noise * Will sleep for ' $SLEEP_TIME_MINUTES
-    sleep $SLEEP_TIME_MINUTES
+for (( j=0; j<$len; j++ )); do
+    upload_and_transfer $j
 done
+
+echo '* RUCIO Produce Noise * Done!'
