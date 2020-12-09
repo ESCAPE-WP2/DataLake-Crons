@@ -19,6 +19,6 @@ fts_testing(){
 }
 
 cd /scripts/fts-analysis-datalake/
-fts_testing &
+fts_testing
 
 echo '* FTS Testing * Done!'
