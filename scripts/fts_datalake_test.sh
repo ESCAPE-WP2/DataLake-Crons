@@ -16,6 +16,7 @@ fts_testing(){
     python fts_datalake_test.py -i conf/datalake_all_1mb.json --cleanup --exit
     python fts_datalake_test.py -i conf/datalake_all_1mb.json
     python fts_datalake_test.py -i conf/datalake_all_except_lapp_webdav_1000mb.json
+    python fts_datalake_test.py -i conf/datalake_all_except_lapp_webdav_5000mb.json
 }
 
 cd /scripts/fts-analysis-datalake/

@@ -12,7 +12,7 @@ len=${#rses[@]}
 
 echo '* RUCIO Produce Noise * Exporting ENV Variables'
 
-FILE_SIZE=${FILE_SIZE:-10000M}
+FILE_SIZE=${FILE_SIZE:-5000M}
 RUCIO_SCOPE=${RUCIO_SCOPE:-ESCAPE_CERN_TEAM-noise}
 FILE_LIFETIME=${FILE_LIFETIME:-3600}
 
