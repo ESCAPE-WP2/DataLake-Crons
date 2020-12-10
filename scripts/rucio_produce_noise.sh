@@ -31,7 +31,7 @@ upload_and_transfer () {
         
         if [ $1 != $i ]; then
             echo '*** upload to rse' ${rses[$1]}
-	        rucio upload --rse ${rses[$1]} --lifetime $FILE_LIFETIME --scope $RUCIO_SCOPE $filename || return '1' #continue
+            rucio upload --rse ${rses[$1]} --lifetime $FILE_LIFETIME --scope $RUCIO_SCOPE $filename || return '1' #continue
             echo '*** add-rule to rse' ${rses[$i]}
             rucio add-rule --lifetime $FILE_LIFETIME $RUCIO_SCOPE:$did 1 ${rses[$i]};
 	    fi
