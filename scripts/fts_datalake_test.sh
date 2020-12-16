@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd /scripts/fts-analysis-datalake/
+git pull
+cd /scripts/
+
 echo '* FTS Testing * Exporting ENV Variables (X509: ' $X509_USER_PROXY ' )'
 
 mkdir -p /scripts/temp_files_fts/
