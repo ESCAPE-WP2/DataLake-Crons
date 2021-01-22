@@ -32,7 +32,10 @@ RUN mkdir -p /etc/grid-security/vomsdir/escape \
 
 # gfal2-python dependencies
 RUN yum -y install cmake boost-devel gcc gcc-c++ make
+# needed for python3 support
+RUN pip install --upgrade pip
+RUN pip install requests
+# fts-analysis-datalake requirements
 # RUN pip install -r /scripts/fts-analysis-datalake/requirements.txt
-# RUN /usr/bin/python2 -m pip install --upgrade pip
 
 ENTRYPOINT ["/bin/bash"]
