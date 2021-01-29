@@ -9,6 +9,6 @@ export CRIC_URL="http://escape-cric.cern.ch/api/doma/rse/query/?json&preset=doma
 echo '* Gfal SAM Testing * Starting'
 
 cd $GFAL_LOCALPATH
-python /scripts/Utilities-and-Operations-Scripts/gfal-sam-testing/gfal_sam.py
+python3 /scripts/Utilities-and-Operations-Scripts/gfal-sam-testing/gfal_sam.py
 
 echo '* Gfal SAM Testing * Done!'

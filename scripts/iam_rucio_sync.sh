@@ -8,6 +8,6 @@ export IAM_CLIENT_SECRET=$IAM_RUCIO_SYNC_CLIENT_SECRET
 
 echo '* Sync to IAM * Starting'
 
-python Utilities-and-Operations-Scripts/iam-rucio-sync/sync_iam_rucio.py
+python3 Utilities-and-Operations-Scripts/iam-rucio-sync/sync_iam_rucio.py
 
 echo '* Sync to IAM * Done!'

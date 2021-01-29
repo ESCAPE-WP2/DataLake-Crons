@@ -5,6 +5,7 @@ RUN yum clean all && \
 
 RUN yum -y install git
 
+RUN pip install --upgrade pip
 RUN pip install configparser
 RUN mkdir /scripts
 
@@ -30,11 +31,6 @@ RUN mkdir -p /etc/vomses \
 RUN mkdir -p /etc/grid-security/vomsdir/escape \
     && wget https://indigo-iam.github.io/escape-docs/voms-config/voms-escape.cloud.cnaf.infn.it.lsc -O /etc/grid-security/vomsdir/escape/voms-escape.cloud.cnaf.infn.it.lsc
 
-# gfal2-python dependencies
-RUN yum -y install cmake boost-devel gcc gcc-c++ make
-# needed for python3 support
-RUN pip install --upgrade pip
-RUN pip install requests
 # fts-analysis-datalake requirements
 # RUN pip install -r /scripts/fts-analysis-datalake/requirements.txt
 
