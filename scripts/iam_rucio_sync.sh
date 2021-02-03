@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd /scripts/Utilities-and-Operations-Scripts/
+git pull
+cd /scripts/
+
 echo '* Sync to IAM * Exporting ENV Variables'
 
 export IAM_SERVER=$IAM_RUCIO_SYNC_SERVER
