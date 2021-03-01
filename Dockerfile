@@ -1,4 +1,4 @@
-FROM rucio/rucio-server:release-1.24.4
+FROM rucio/rucio-server:release-1.24.5
 
 # cleanup yum cache
 RUN yum clean all && \
