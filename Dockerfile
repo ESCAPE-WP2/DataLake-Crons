@@ -1,4 +1,4 @@
-FROM rucio/rucio-server:release-1.25.1.post1
+FROM rucio/rucio-server:release-1.25.3.post1
 
 # cleanup yum cache
 RUN yum clean all && \
@@ -37,5 +37,9 @@ RUN mkdir -p /etc/vomses \
     && wget https://indigo-iam.github.io/escape-docs/voms-config/voms-escape.cloud.cnaf.infn.it.vomses -O /etc/vomses/voms-escape.cloud.cnaf.infn.it.vomses
 RUN mkdir -p /etc/grid-security/vomsdir/escape \
     && wget https://indigo-iam.github.io/escape-docs/voms-config/voms-escape.cloud.cnaf.infn.it.lsc -O /etc/grid-security/vomsdir/escape/voms-escape.cloud.cnaf.infn.it.lsc
+
+# Required!
+# RUN mkdir -p /etc/pki/tls/certs/
+# COPY ./CERN-bundle.pem /etc/pki/tls/certs/CERN-bundle.pem
 
 ENTRYPOINT ["/bin/bash"]
