@@ -1,4 +1,4 @@
-FROM rucio/rucio-server:release-1.25.3.post1
+FROM rucio/rucio-server:release-1.25.4
 
 # cleanup yum cache
 RUN yum clean all && \
@@ -41,5 +41,9 @@ RUN mkdir -p /etc/grid-security/vomsdir/escape \
 # Required!
 # RUN mkdir -p /etc/pki/tls/certs/
 # COPY ./CERN-bundle.pem /etc/pki/tls/certs/CERN-bundle.pem
+
+# Install latest kubectl
+RUN curl -o /usr/bin/kubectl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+RUN chmod +x /usr/bin/kubectl
 
 ENTRYPOINT ["/bin/bash"]
