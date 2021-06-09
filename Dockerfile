@@ -1,4 +1,4 @@
-FROM rucio/rucio-server:release-1.25.4
+FROM rucio/rucio-server:release-1.25.6
 
 # cleanup yum cache
 RUN yum clean all && \
@@ -37,10 +37,6 @@ RUN mkdir -p /etc/vomses \
     && wget https://indigo-iam.github.io/escape-docs/voms-config/voms-escape.cloud.cnaf.infn.it.vomses -O /etc/vomses/voms-escape.cloud.cnaf.infn.it.vomses
 RUN mkdir -p /etc/grid-security/vomsdir/escape \
     && wget https://indigo-iam.github.io/escape-docs/voms-config/voms-escape.cloud.cnaf.infn.it.lsc -O /etc/grid-security/vomsdir/escape/voms-escape.cloud.cnaf.infn.it.lsc
-
-# Required!
-# RUN mkdir -p /etc/pki/tls/certs/
-# COPY ./CERN-bundle.pem /etc/pki/tls/certs/CERN-bundle.pem
 
 # Install latest kubectl
 RUN curl -o /usr/bin/kubectl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
