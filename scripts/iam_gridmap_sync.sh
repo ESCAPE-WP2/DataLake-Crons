@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /scripts/Utilities-and-Operations-Scripts/
-GIT_CURL_VERBOSE=1 git pull
+GIT_SSL_NO_VERIFY=true GIT_CURL_VERBOSE=1 git pull
 cd /scripts/
 
 echo '* Sync to IAM (Gridmap) * Exporting ENV Variables'

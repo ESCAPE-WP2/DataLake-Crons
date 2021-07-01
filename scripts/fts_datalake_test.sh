@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /scripts/fts-analysis-datalake/
-git pull
+GIT_SSL_NO_VERIFY=true git pull
 
 echo '* FTS Testing * Exporting ENV Variables (X509: ' $X509_USER_PROXY ' )'
 echo '* FTS Testing * Starting'

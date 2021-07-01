@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /scripts/Utilities-and-Operations-Scripts/
-git pull
+GIT_SSL_NO_VERIFY=true git pull
 cd /scripts/
 
 echo '* Gfal SAM Testing * Exporting ENV Variables (X509: ' $X509_USER_PROXY ' )'
