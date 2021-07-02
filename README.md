@@ -7,9 +7,7 @@ The original scripts can be found at https://github.com/ESCAPE-WP2/Utilities-and
 
 ## Example of build and upload
 ```bash
-docker build .
-
-docker tag $IMAGE_ID projectescape/escape-datalake-crons:release-1.25.6
+docker build . --tag projectescape/escape-datalake-crons:release-1.25.6
 ```
 Remember to do `docker login` and be member of `projectescape`.
 ```bash
