@@ -1,18 +1,36 @@
-# DataLake-Crons
-> Synchronization Scripts
+# DataLake Synchronization & Testing Scripts
 
-The container is used to periodically run specific operations in the ESCAPE DataLake.
-The container runs the CRIC-Rucio, IAM-Rucio, and IAM-EOS gridmap synchronizations, as well as Rucio noise, gfal-sam-testing, and FTS TPC tests.
-The original scripts can be found at https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts and https://github.com/ESCAPE-WP2/fts-analysis-datalake.git .
+## General Information
+
+The files in this repository build the container that is used to run periodically specific operations in the ESCAPE DataLake.
+
+These operations concern synchronization routines:
+
+* CRIC &#8594; Rucio RSEs configuration mapping ([source code](https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts/tree/master/cric-rucio-sync))
+
+* IAM &#8594; Rucio accounts mapping ([source code](https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts/tree/master/iam-rucio-sync))
+
+* IAM &#8594; EOS accounts mapping (gridmap file) ([source code](https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts/tree/master/iam-gridmap-sync))
+
+as well as mock traffic production:
+
+* Production of Rucio noise (upload + replicate) ([source code](https://github.com/ESCAPE-WP2/DataLake-Crons/blob/master/scripts/rucio_produce_noise.sh))
+
+* GFAL testing (upload + download + delete) ([source code](https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts/tree/master/gfal-sam-testing))
+
+* FTS testing (TPC transfers) ([source code](https://github.com/ESCAPE-WP2/fts-analysis-datalake))
+
 
 ## Example of build and upload
+The build and push commands can be found inside the `Makefile`. 
+
+The `baseimage` and `basetag` variables should be adjusted accordingly. In order to build and tag the new image one has to execute the following command:
 ```bash
-docker build --no-cache .
-docker tag $IMAGE_ID projectescape/escape-datalake-crons:release-1.26.8
+make build 
 ```
-Remember to do `docker login` and be member of `projectescape`.
+In order to be able to push the newly built image, you would need to `docker login` first and also be a member of [projectescape](https://hub.docker.com/u/projectescape) DockerHub organizatiton. Then you can just execute:
 ```bash
-docker push projectescape/escape-datalake-crons:release-1.26.8
+make push
 ```
 ## Run
 
@@ -23,8 +41,8 @@ export IAM_RUCIO_SYNC_CLIENT_SECRET=$IAM_RUCIO_SYNC_CLIENT_SECRET
 export IAM_RUCIO_SYNC_SERVER=$IAM_RUCIO_SYNC_SERVER
 export IAM_RUCIO_SYNC_CLIENT_ID=$IAM_RUCIO_SYNC_CLIENT_ID
 ```
-Optionally, set the following variables to control the frequency of the execution.
-```bash    
-export CRIC_RUCIO_SYNC_SLEEP_TIME_MINUTES=$CRIC_RUCIO_SYNC_SLEEP_TIME_MINUTES
-export IAM_RUCIO_SYNC_SLEEP_TIME_MINUTES=$IAM_RUCIO_SYNC_SLEEP_TIME_MINUTES
+To run the container and get an interactive terminal inside use:
+```bash
+make run
 ```
+Note that this command will delete the container when you exit.
