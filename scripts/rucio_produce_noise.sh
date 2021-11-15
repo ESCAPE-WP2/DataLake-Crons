@@ -14,39 +14,43 @@ done < list_rses_from_cric.txt
 
 len=${#rses[@]}
 
-echo '* RUCIO Produce Noise * Exporting ENV Variables'
-
-FILE_SIZE=${FILE_SIZE:-1000M}
+echo '* Assigning ENV Config Variables:'
+FILE_SIZE=${FILE_SIZE:-100M}
 RUCIO_SCOPE=${RUCIO_SCOPE:-ESCAPE_CERN_TEAM-noise}
 FILE_LIFETIME=${FILE_LIFETIME:-3600}
+echo '*   FILE_SIZE = '"$FILE_SIZE"''
+echo '*   RUCIO_SCOPE = '"$RUCIO_SCOPE"''
+echo '*   FILE_LIFETIME = '"$FILE_LIFETIME"''
 
 upload_and_transfer () {
     for (( i=0; i<$len; i++ )); do
-        RANDOM_STRING=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
-        
-        filename=/tmp/auto_uploaded_$RANDOM_STRING
-        did=auto_uploaded_$RANDOM_STRING
-        
-        echo '*** filename' $filename
-        
-        # truncate -s $FILE_SIZE $filename ## !! 10M (10485760 byte) empty file whose adler32 should be 09600001, which is problematic for STORM due to the leading '0'
-        # dd if=/dev/urandom of=$filename bs=1048576 count=$FILE_SIZE ## output should be filtered away '> /dev/null 2>&1'
-        head -c $FILE_SIZE < /dev/urandom  > $filename
-        
+
         if [ $1 != $i ]; then
-            echo '*** upload to rse' ${rses[$1]}
-            rucio -v upload --rse ${rses[$1]} --lifetime $FILE_LIFETIME --scope $RUCIO_SCOPE $filename || return '1' #continue
-            echo '*** add-rule to rse' ${rses[$i]}
-            rucio add-rule --lifetime $FILE_LIFETIME --activity "Functional Test" $RUCIO_SCOPE:$did 1 ${rses[$i]};
+
+            echo '*** ======================================================================== ***'
+
+            RANDOM_STRING=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+            echo '*** generated random file identifier: '"$RANDOM_STRING"' ***'
+
+            filename=/tmp/auto_uploaded_$RANDOM_STRING
+            did=auto_uploaded_$RANDOM_STRING
+            
+            echo '*** generating '"$FILE_SIZE"' file on local storage ***'
+            head -c $FILE_SIZE < /dev/urandom  > $filename
+            echo '*** filename: '"$filename"''
+
+            echo '*** uploading to rse '"${rses[$1]}"' and adding rule to rse '"${rses[$i]}"'' 
+            rucio -v upload --rse ${rses[$1]} --lifetime $FILE_LIFETIME --scope $RUCIO_SCOPE $filename && rucio add-rule --lifetime $FILE_LIFETIME --activity "Functional Test" $RUCIO_SCOPE:$did 1 ${rses[$i]}
+
+            rm -f $filename
 	    fi
-        rm -f $filename
     done
 }
 
-echo '* RUCIO Produce Noise * Starting'
+echo '* RUCIO Produce Noise START * '
 
 for (( j=0; j<$len; j++ )); do
     upload_and_transfer $j
 done
 
-echo '* RUCIO Produce Noise * Done!'
+echo '* RUCIO Produce Noise DONE * '
