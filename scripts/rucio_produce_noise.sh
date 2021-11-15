@@ -39,7 +39,7 @@ upload_and_transfer () {
             echo '*** add-rule to rse' ${rses[$i]}
             rucio add-rule --lifetime $FILE_LIFETIME --activity "Functional Test" $RUCIO_SCOPE:$did 1 ${rses[$i]};
 	    fi
-        rm $filename
+        rm -f $filename
     done
 }
 
