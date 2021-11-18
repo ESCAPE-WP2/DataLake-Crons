@@ -18,13 +18,15 @@ WORKDIR /scripts
 # clone repos
 RUN git clone https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts.git
 RUN git clone https://github.com/ESCAPE-WP2/fts-analysis-datalake.git
-RUN git clone https://github.com/ESCAPE-WP2/rucio-stats-probe
+RUN git clone https://github.com/ESCAPE-WP2/rucio-stats-dids.git
+RUN git clone git@github.com:ESCAPE-WP2/rucio-stats-replicas.git
 
 # install python requirments
 RUN pip install --upgrade pip
 RUN pip install -r /scripts/Utilities-and-Operations-Scripts/gfal-sam-testing/requirements.txt
 RUN pip install -r /scripts/fts-analysis-datalake/requirements.txt
-RUN pip install -r /scripts/rucio-stats-probe/requirements.txt
+RUN pip install -r /scripts/rucio-stats-dids/requirements.txt
+RUN pip install -r /scripts/rucio-stats-replicas/requirements.txt
 
 COPY ./scripts/* /scripts/
 COPY ./rucio.cfg.escape.j2 /rucio.cfg.escape.j2
