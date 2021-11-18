@@ -19,7 +19,7 @@ WORKDIR /scripts
 RUN git clone https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts.git
 RUN git clone https://github.com/ESCAPE-WP2/fts-analysis-datalake.git
 RUN git clone https://github.com/ESCAPE-WP2/rucio-stats-dids.git
-RUN git clone git@github.com:ESCAPE-WP2/rucio-stats-replicas.git
+RUN git clone https://github.com/ESCAPE-WP2/rucio-stats-replicas.git
 
 # install python requirments
 RUN pip install --upgrade pip
