@@ -37,6 +37,7 @@ RUN curl -o /etc/yum.repos.d/EGI-trustanchors.repo http://repository.egi.eu/sw/p
 && yum -y update
 
 RUN yum -y install wget gfal2*
+RUN yum install -y python3-gfal2
 RUN yum -y install ca-certificates ca-policy-egi-core
 
 # ESCAPE VOMS setup
