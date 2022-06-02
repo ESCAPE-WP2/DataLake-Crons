@@ -14,6 +14,10 @@ jobs:
 
     steps:
 
+    - 
+      name: Checkout repository
+      uses: actions/checkout@v3
+
     # Login against a Docker registry
     # https://github.com/docker/login-action
     - 
