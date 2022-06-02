@@ -33,7 +33,7 @@ COPY ./rucio.cfg.escape.j2 /rucio.cfg.escape.j2
 
 USER root
 # EGI trust anchors
-RUN curl -o /etc/yum.repos.d/EGI-trustanchors.repo http://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanchors.repo \
+RUN curl -o /etc/yum.repos.d/EGI-trustanchors.repo https://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanchors.repo \
 && yum -y update
 
 RUN yum -y install wget gfal2*
