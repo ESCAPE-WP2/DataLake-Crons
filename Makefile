@@ -1,6 +1,6 @@
 # base image details
 baseimage = rucio/rucio-server
-basetag = release-1.28.5
+basetag = release-1.29.0
 # target image details
 imagetarget = projectescape/escape-datalake-crons
 imagetag = $(basetag)
