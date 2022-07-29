@@ -3,7 +3,7 @@ ARG BASETAG
 
 FROM $BASEIMAGE:$BASETAG
 
-ARG RUCIO_CLIENT_VERSION
+ARG RUCIO_VERSION
 
 # cleanup yum cache
 RUN yum upgrade -y && \
@@ -29,7 +29,8 @@ RUN pip install -r /scripts/Utilities-and-Operations-Scripts/gfal-sam-testing/re
 RUN pip install -r /scripts/fts-analysis-datalake/requirements.txt
 RUN pip install -r /scripts/rucio-stats-dids/requirements.txt
 RUN pip install -r /scripts/rucio-stats-replicas/requirements.txt
-RUN pip install rucio-clients==$RUCIO_CLIENT_VERSION
+RUN pip install rucio-clients==$RUCIO_VERSION
+RUN pip install rucio==$RUCIO_VERSION
 
 COPY ./scripts/* /scripts/
 COPY ./rucio.cfg.escape.j2 /rucio.cfg.escape.j2
