@@ -22,6 +22,11 @@ as well as mock traffic production:
 
 
 ## Example of build and upload
+
+Every commit to the repo will trigger a CI/CD action which rebuilds the image and pushes it to https://hub.docker.com/u/projectescape, as specified in the .github/workflows/docker-image.yml file. 
+
+If you want to run it manually: 
+
 The build and push commands can be found inside the `Makefile`. 
 
 The `baseimage` and `basetag` variables should be adjusted accordingly. In order to build and tag the new image one has to execute the following command:
