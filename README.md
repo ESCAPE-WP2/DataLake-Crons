@@ -23,7 +23,7 @@ as well as mock traffic production:
 
 ## Example of build and upload
 
-Every commit to the repo will trigger a CI/CD action which rebuilds the image and pushes it to https://hub.docker.com/u/projectescape, as specified in the .github/workflows/docker-image.yml file. 
+Every commit to the repo will trigger a CI/CD action which rebuilds the image and pushes it to https://hub.docker.com/u/projectescape, as specified in the .github/workflows/docker-image.yml file. The image will then be referenced in the K8s Cronjob specification in https://gitlab.cern.ch/escape-wp2/ew2c-kubernetes-cluster-configuration/-/tree/master/Crons (restricted access). 
 
 If you want to run it manually: 
 
