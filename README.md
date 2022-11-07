@@ -20,6 +20,9 @@ as well as mock traffic production:
 
 * FTS testing (TPC transfers) ([source code](https://github.com/ESCAPE-WP2/fts-analysis-datalake))
 
+The Rucio configuration file comes from the rucio.cfg.escape.j2 file. 
+The ESCAPE VOMS configuration is instead taken from the (Indigo IAM  Escape)[https://github.com/indigo-iam/escape-docs] repository. 
+
 
 ## Example of build and upload
 
